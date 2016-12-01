@@ -31,6 +31,7 @@ $ rm -rf ./*.tar.gz
 >Is just a quick guide, more information may be found on source sites.
 >Warning! sudo may be needed for running the command below
 >Do not forget replace path to library correctly
+
 #### Compile Xerces-c
 ```sh
 $ cd ~/quickfast/xerces-c
