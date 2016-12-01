@@ -80,7 +80,8 @@ Generate Makefile
 ```sh
 ./m.sh
 ```
-Replace generated file ~/quickfast/quickfast/src/MakeFile.QuickFAST by this
+For fixing existing issue https://github.com/objectcomputing/quickfast/issues/127
+Replace generated file ~/quickfast/quickfast/src/MakeFile.QuickFAST by this (with correct variables)
 ```sh
 #----------------------------------------------------------------------------
 #       Macros
