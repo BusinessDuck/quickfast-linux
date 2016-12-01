@@ -1,6 +1,6 @@
 # QuickFAST / FIX Adapted for streaming protocol (linux)
 
-![](http://t11.deviantart.net/eaC0D_paozUQ9r0ExsQxBy_AYrQ=/300x200/filters:fixed_height(100,100):origin()/pre09/8a51/th/pre/f/2013/206/1/9/simple_linux_logo_by_dablim-d5k4ghu.png) ![](https://www.ociweb.com/files/1414/3024/2447/logo-circle.png)
+![](https://github.com/BusinessDuck/quickfast-linux/raw/master/resources/linux.png) ![](https://github.com/BusinessDuck/quickfast-linux/raw/master/resources/rsz_logo.png)
 
 ## Dependencies
 
