@@ -102,6 +102,32 @@ namespace{
     "  </template>"
     "</templates>";
 
+
+  Messages::FieldIdentity identity_1("field_1");
+  Messages::FieldIdentity identity_2("field_2");
+  Messages::FieldIdentity identity_3("field_3");
+  Messages::FieldIdentity identity_4("field_4");
+  Messages::FieldIdentity identity_5("field_5");
+  Messages::FieldIdentity identity_6("field_6");
+  Messages::FieldIdentity identity_7("field_7");
+  Messages::FieldIdentity identity_8("field_8");
+  Messages::FieldIdentity identity_9("field_9");
+  Messages::FieldIdentity identity_10("field_10");
+  Messages::FieldIdentity identity_11("field_11");
+  Messages::FieldIdentity identity_12("field_12");
+  Messages::FieldIdentity identity_13("field_13");
+  Messages::FieldIdentity identity_14("field_14");
+
+  Messages::FieldIdentity MDUpdateAdd("MDUpdateAdd");
+  Messages::FieldIdentity MDUpdateDel("MDUpdateDel");
+
+  Messages::FieldIdentity MDUpdateAction("MDUpdateAction");
+  Messages::FieldIdentity MDEntryID("MDEntryID");
+  Messages::FieldIdentity MDEntryPx("MDEntryPx");
+  Messages::FieldIdentity MDEntrySize("MDEntrySize");
+  Messages::FieldIdentity Currency("Currency");
+
+
   bool compareMessages(Messages::Message & lhs, Messages::Message & rhs)
   {
     std::stringstream reason;
@@ -123,21 +149,6 @@ BOOST_AUTO_TEST_CASE(testRoundTripFieldOperators)
 
   BOOST_CHECK(templateRegistry);
   BOOST_CHECK_EQUAL(templateRegistry->maxFieldCount(), 14);
-
-  Messages::FieldIdentityCPtr identity_1 = new Messages::FieldIdentity("field_1");
-  Messages::FieldIdentityCPtr identity_2 = new Messages::FieldIdentity("field_2");
-  Messages::FieldIdentityCPtr identity_3 = new Messages::FieldIdentity("field_3");
-  Messages::FieldIdentityCPtr identity_4 = new Messages::FieldIdentity("field_4");
-  Messages::FieldIdentityCPtr identity_5 = new Messages::FieldIdentity("field_5");
-  Messages::FieldIdentityCPtr identity_6 = new Messages::FieldIdentity("field_6");
-  Messages::FieldIdentityCPtr identity_7 = new Messages::FieldIdentity("field_7");
-  Messages::FieldIdentityCPtr identity_8 = new Messages::FieldIdentity("field_8");
-  Messages::FieldIdentityCPtr identity_9 = new Messages::FieldIdentity("field_9");
-  Messages::FieldIdentityCPtr identity_10 = new Messages::FieldIdentity("field_10");
-  Messages::FieldIdentityCPtr identity_11 = new Messages::FieldIdentity("field_11");
-  Messages::FieldIdentityCPtr identity_12 = new Messages::FieldIdentity("field_12");
-  Messages::FieldIdentityCPtr identity_13 = new Messages::FieldIdentity("field_13");
-  Messages::FieldIdentityCPtr identity_14 = new Messages::FieldIdentity("field_14");
 
   Messages::MessagePtr msg1(new Messages::Message(templateRegistry->maxFieldCount()));
   msg1->addField(identity_1, Messages::FieldUInt32::create(1));
@@ -185,37 +196,37 @@ BOOST_AUTO_TEST_CASE(testRoundTripFieldOperators)
   Codecs::Encoder encoder(templateRegistry);
   template_id_t templId = 1; // from the XML above
 
-  BOOST_CHECKPOINT("encode msg1A");
+  BOOST_TEST_CHECKPOINT("encode msg1A");
   Codecs::DataDestination destination1A;
   encoder.encodeMessage(destination1A, templId, *msg1);
   std::string fast1A;
   destination1A.toString(fast1A);
 
-  BOOST_CHECKPOINT("encode msg1B");
+  BOOST_TEST_CHECKPOINT("encode msg1B");
   Codecs::DataDestination destination1B;
   encoder.encodeMessage(destination1B, templId, *msg1);
   std::string fast1B;
   destination1B.toString(fast1B);
 
-  BOOST_CHECKPOINT("encode msg1C");
+  BOOST_TEST_CHECKPOINT("encode msg1C");
   Codecs::DataDestination destination1C;
   encoder.encodeMessage(destination1C, templId, *msg1);
   std::string fast1C;
   destination1C.toString(fast1C);
 
-  BOOST_CHECKPOINT("encode msg2A");
+  BOOST_TEST_CHECKPOINT("encode msg2A");
   Codecs::DataDestination destination2A;
   encoder.encodeMessage(destination2A, templId, *msg2);
   std::string fast2A;
   destination2A.toString(fast2A);
 
-  BOOST_CHECKPOINT("encode msg2B");
+  BOOST_TEST_CHECKPOINT("encode msg2B");
   Codecs::DataDestination destination2B;
   encoder.encodeMessage(destination2B, templId, *msg2);
   std::string fast2B;
   destination2B.toString(fast2B);
 
-  BOOST_CHECKPOINT("encode msg3");
+  BOOST_TEST_CHECKPOINT("encode msg3");
   Codecs::DataDestination destination3;
   encoder.encodeMessage(destination3, templId, *msg3);
   std::string fast3;
@@ -223,37 +234,37 @@ BOOST_AUTO_TEST_CASE(testRoundTripFieldOperators)
 
   Codecs::Decoder decoder(templateRegistry);
 
-  BOOST_CHECKPOINT("decode msg1A");
+  BOOST_TEST_CHECKPOINT("decode msg1A");
   Codecs::DataSourceString source1A(fast1A);
   Codecs::SingleMessageConsumer consumer1A;
   Codecs::GenericMessageBuilder builder1A(consumer1A);
   decoder.decodeMessage(source1A, builder1A);
 
-  BOOST_CHECKPOINT("decode msg1B");
+  BOOST_TEST_CHECKPOINT("decode msg1B");
   Codecs::DataSourceString source1B(fast1B);
   Codecs::SingleMessageConsumer consumer1B;
   Codecs::GenericMessageBuilder builder1B(consumer1B);
   decoder.decodeMessage(source1B, builder1B);
 
-  BOOST_CHECKPOINT("decode msg1C");
+  BOOST_TEST_CHECKPOINT("decode msg1C");
   Codecs::DataSourceString source1C(fast1C);
   Codecs::SingleMessageConsumer consumer1C;
   Codecs::GenericMessageBuilder builder1C(consumer1C);
   decoder.decodeMessage(source1C, builder1C);
 
-  BOOST_CHECKPOINT("decode msg2A");
+  BOOST_TEST_CHECKPOINT("decode msg2A");
   Codecs::DataSourceString source2A(fast2A);
   Codecs::SingleMessageConsumer consumer2A;
   Codecs::GenericMessageBuilder builder2A(consumer2A);
   decoder.decodeMessage(source2A, builder2A);
 
-  BOOST_CHECKPOINT("decode msg2B");
+  BOOST_TEST_CHECKPOINT("decode msg2B");
   Codecs::DataSourceString source2B(fast2B);
   Codecs::SingleMessageConsumer consumer2B;
   Codecs::GenericMessageBuilder builder2B(consumer2B);
   decoder.decodeMessage(source2B, builder2B);
 
-  BOOST_CHECKPOINT("decode msg3");
+  BOOST_TEST_CHECKPOINT("decode msg3");
   Codecs::DataSourceString source3(fast3);
   Codecs::SingleMessageConsumer consumer3;
   Codecs::GenericMessageBuilder builder3(consumer3);
@@ -276,15 +287,6 @@ BOOST_AUTO_TEST_CASE(testRoundTripOptionalTemplateRefs)
   std::stringstream templateStream(theTemplates);
   Codecs::TemplateRegistryPtr templateRegistry =
     parser.parse(templateStream);
-
-  Messages::FieldIdentityCPtr MDUpdateAdd = new Messages::FieldIdentity("MDUpdateAdd");
-  Messages::FieldIdentityCPtr MDUpdateDel = new Messages::FieldIdentity("MDUpdateDel");
-
-  Messages::FieldIdentityCPtr MDUpdateAction = new Messages::FieldIdentity("MDUpdateAction");
-  Messages::FieldIdentityCPtr MDEntryID = new Messages::FieldIdentity("MDEntryID");
-  Messages::FieldIdentityCPtr MDEntryPx = new Messages::FieldIdentity("MDEntryPx");
-  Messages::FieldIdentityCPtr MDEntrySize = new Messages::FieldIdentity("MDEntrySize");
-  Messages::FieldIdentityCPtr Currency = new Messages::FieldIdentity("Currency");
 
   Messages::MessagePtr addMessage(new Messages::Message(templateRegistry->maxFieldCount()));
   Messages::MessagePtr addFlatMessage(new Messages::Message(templateRegistry->maxFieldCount()));
@@ -315,13 +317,13 @@ BOOST_AUTO_TEST_CASE(testRoundTripOptionalTemplateRefs)
   Codecs::Encoder encoder(templateRegistry);
   template_id_t templId = 20; // from the XML above
 
-  BOOST_CHECKPOINT("encode addMessage");
+  BOOST_TEST_CHECKPOINT("encode addMessage");
   Codecs::DataDestination addDestination;
   encoder.encodeMessage(addDestination, templId, *addMessage);
   std::string encodedAdd;
   addDestination.toString(encodedAdd);
 
-  BOOST_CHECKPOINT("encode delMessage");
+  BOOST_TEST_CHECKPOINT("encode delMessage");
   Codecs::DataDestination delDestination;
   encoder.encodeMessage(delDestination, templId, *delMessage);
   std::string encodedDel;
@@ -329,14 +331,14 @@ BOOST_AUTO_TEST_CASE(testRoundTripOptionalTemplateRefs)
 
   Codecs::Decoder decoder(templateRegistry);
 
-  BOOST_CHECKPOINT("decode addMessage");
+  BOOST_TEST_CHECKPOINT("decode addMessage");
   Codecs::DataSourceString addSource(encodedAdd);
   Codecs::SingleMessageConsumer consumerAdd;
   Codecs::GenericMessageBuilder builderAdd(consumerAdd);
   decoder.decodeMessage(addSource, builderAdd);
 
   BOOST_CHECK(compareMessages(*addFlatMessage, consumerAdd.message()));
-  BOOST_CHECKPOINT("decode delMessage");
+  BOOST_TEST_CHECKPOINT("decode delMessage");
   Codecs::DataSourceString delSource(encodedDel);
   Codecs::SingleMessageConsumer consumerDel;
   Codecs::GenericMessageBuilder builderDel(consumerDel);
